@@ -1,11 +1,6 @@
 package org.animeaholic.millipede.processor;
 
-import static org.animeaholic.millipede.constant.MillipedeConfigConstants.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map.Entry;
-
+import com.alibaba.fastjson.JSON;
 import org.animeaholic.millipede.entity.CrawlResTask;
 import org.animeaholic.millipede.entity.CrawlTask;
 import org.animeaholic.millipede.entity.base.AbsBaseTask;
@@ -24,7 +19,12 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSON;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
+
+import static org.animeaholic.millipede.constant.MillipedeConfigConstants.VALUE_MILLIPEDE_DEFAULT_CRAWL_PROCESSOR_CONNECT_TIMEOUT;
+import static org.animeaholic.millipede.constant.MillipedeConfigConstants.VALUE_MILLIPEDE_DEFAULT_CRAWL_PROCESSOR_READ_TIMEOUT;
 
 /**
  * 默认的抓取处理者
@@ -79,6 +79,7 @@ public class DefaultCrawlProcessor extends AbsBaseProcessor {
 			break;
 		case POST:
 			request = new HttpPost(crawlTask.getUrl());
+			((HttpPost) request).setEntity(crawlTask.getHttpEntity());
 			break;
 		case HEAD:
 			// TODO : 加入head方法的支持

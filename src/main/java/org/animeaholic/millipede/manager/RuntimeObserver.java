@@ -1,16 +1,14 @@
 package org.animeaholic.millipede.manager;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.animeaholic.millipede.bus.AssemblyBus;
 import org.animeaholic.millipede.entity.CrawlPlan;
 import org.animeaholic.millipede.entity.base.AbsBaseTask;
 import org.animeaholic.millipede.enums.TaskStatusEnum;
 import org.animeaholic.millipede.factory.PlanFactory;
 
-import com.alibaba.fastjson.JSON;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 计划及任务监控类
@@ -51,7 +49,7 @@ public class RuntimeObserver {
 			PlanFactory.getPlan(baseTask.getPlanName()).setStatusWithoutNotify(TaskStatusEnum.SUCCESS);
 			planStatics.flush();
 			this.pendingPlanNum--;
-			this.assemblyBus.restartWork();
+//			this.assemblyBus.restartWork();
 		}
 	}
 	
